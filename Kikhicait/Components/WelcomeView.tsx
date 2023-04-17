@@ -1,10 +1,15 @@
 import React from "react";
 import { View, StyleSheet, Image, Text } from "react-native";
 import WelcomeButton from "./WelcomeButton";
+import { useNavigation } from "@react-navigation/native";
+import { PlayViewProps } from "../Navigation/RootTypes";
+
 
 export default function WelcomeView() {
     const welcomeText: string = 'Bienvenue dans Kikhiçait !'
     const welcomeTitleText: string = 'Kikhiçait'
+    const playNavigation = useNavigation<PlayViewProps>();
+
     return (
         <View style={styles.mainView}>
             <View style={styles.logoView}>
@@ -16,13 +21,13 @@ export default function WelcomeView() {
             </View>
             <View style={styles.buttonsView}>
                 <View style={{ flex: 1 }}>
-                    <WelcomeButton title={"Jouer"} />
+                    <WelcomeButton title="Jouer" screenName="Play" navigation={playNavigation} iconName='dice' />
                 </View>
                 <View style={{ flex: 1 }}>
-                    <WelcomeButton title={"Classement"} />
+                    <WelcomeButton title="Classement" screenName="Play" navigation={playNavigation} iconName='bell' />
                 </View>
                 <View style={{ flex: 1 }}>
-                    <WelcomeButton title={"Options"} />
+                    <WelcomeButton title="Options" screenName="Play" navigation={playNavigation} iconName='user' />
                 </View>
             </View>
         </View>

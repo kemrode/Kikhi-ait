@@ -1,17 +1,26 @@
 import React from "react";
 import { View, StyleSheet, Pressable, Text } from "react-native";
+import { Icon } from "../App";
 
+export default function WelcomeButton(props: { title: string; navigation: any; screenName: string; iconName: string }) {
 
-interface IProps {
-    title: String
-}
+    // Properties
+    const title = props.title;
+    const nextNavigation = props.navigation;
+    const nextScreenName = props.screenName;
+    const buttonIconName = props.iconName;
 
-export default function WelcomeButton(title: IProps) {
+    // Render
     return (
         <Pressable style={styles.mainView} onPress={() => {
-            console.log("on a pressé le bouton !")
+            nextNavigation.navigate(nextScreenName)
         }}>
-            <Text style={styles.text}>{title.title}</Text>
+            <View>
+                <Text style={styles.text}>{title}</Text>
+            </View>
+            <View>
+                <Icon name={buttonIconName} size={35} color='white' />
+            </View>
         </Pressable>
     )
 }
