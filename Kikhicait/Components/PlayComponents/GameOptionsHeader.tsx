@@ -1,17 +1,30 @@
 import React from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
+import { WelcomeViewProps } from "../../Navigation/RootTypes";
+import { useNavigation } from "@react-navigation/native";
 
 export default function GameOptionsHeader() {
     // Properties
     const exitLabelText: string = "exit";
     const switchOptionText: string = "switch";
     const fiftyfiftyOptionText: string = "50:50";
+    const goToWelcomeView: any = useNavigation<WelcomeViewProps>();
 
     // Render
     return (
         <View style={styles.mainView}>
             <View style={styles.exitContainer}>
-                <Pressable style={styles.exitView} onPress={() => console.log("je quitte le jeu")}>
+                <Pressable style={styles.exitView} onPress={() => {
+                    Alert.alert('Quittez', 'Voulez-vous quitter ?', [{
+                        text: 'Annulez',
+                        onPress: () => console.log("cancel push"),
+                        style: 'cancel'
+                    }, {
+                        text: 'Oui, quitter',
+                        onPress: () => { goToWelcomeView.navigate('Welcome') }
+                    }
+                    ])
+                }}>
                     <Text style={[styles.textProperties, { fontSize: 20 }]}>{exitLabelText}</Text>
                 </Pressable>
             </View>
