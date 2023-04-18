@@ -1,7 +1,7 @@
 import React from "react";
 import { Pressable, View, Text, StyleSheet } from "react-native";
 
-export default function NextViewButton(props: { navigation: any; screenName: string; }) {
+export default function NextViewButton(props: { navigation: any; screenName: string; playerPicture: any; playerName: string }) {
     // Properties
     const nextTitle: string = "Suivant";
     const nextNavigation = props.navigation;
@@ -10,7 +10,7 @@ export default function NextViewButton(props: { navigation: any; screenName: str
     // Render
     return (
         <Pressable style={styles.mainView} onPress={() => {
-            nextNavigation.navigate(nextScreenName)
+            nextNavigation.navigate(nextScreenName, { 'playerPicture': props.playerPicture, 'playerName': props.playerName })
         }}>
             <View style={styles.textView}>
                 <Text style={styles.textFont}>{nextTitle}</Text>

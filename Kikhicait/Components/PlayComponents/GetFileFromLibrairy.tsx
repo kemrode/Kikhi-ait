@@ -2,7 +2,7 @@ import { MediaTypeOptions, launchImageLibraryAsync } from "expo-image-picker";
 import React, { useState } from "react";
 import { Pressable, View, StyleSheet, Image } from "react-native";
 
-export default function GetFileFromLibrairy() {
+export default function GetFileFromLibrairy(props: { setImage: any }) {
     // Properties
     const [image, setImage] = useState<any>();
     const getImage = () => {
@@ -15,6 +15,7 @@ export default function GetFileFromLibrairy() {
             quality: 1,
         }).then((result) => {
             if (!result.cancelled) {
+                props.setImage(result.uri);
                 setImage(result.uri);
             }
         })
@@ -22,7 +23,7 @@ export default function GetFileFromLibrairy() {
 
     return (
         <Pressable style={styles.mainView} onPress={getImage}>
-            <View style={{ width: 100, height: 100, borderRadius: 50, backgroundColor: 'gray' }}>
+            <View style={styles.imageContainer}>
                 {image && <Image source={{ uri: image }} style={styles.imageView} />}
             </View>
         </Pressable>
@@ -35,9 +36,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start'
     },
+    imageContainer: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        backgroundColor: 'gray'
+    },
     imageView: {
         width: 100,
         height: 100,
-        resizeMode: 'cover'
+        resizeMode: 'cover',
+        overflow: 'hidden',
+        borderRadius: 50
     }
 })

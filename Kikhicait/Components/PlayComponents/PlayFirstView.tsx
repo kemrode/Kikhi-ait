@@ -11,6 +11,7 @@ export default function PlayFirstView() {
     const titleMessageText: string = "Pour commencer une partie, saisissez votre profil";
     const pseudoText: string = "Pseudo";
     const [pseudo, setPseudo] = useState("mon pseudo");
+    const [image, setImage] = useState<any>();
     const launchGameNavigation = useNavigation<LaunchGameViewProps>();
 
     console.log(pseudo);
@@ -21,7 +22,7 @@ export default function PlayFirstView() {
                 <Text style={styles.titleText}>{titleMessageText}</Text>
             </View>
             <View style={{ flex: 1.5, alignItems: 'center', justifyContent: 'center' }}>
-                <GetFileFromLibrairy />
+                <GetFileFromLibrairy setImage={setImage} />
             </View>
             <View style={{ flex: 2, marginLeft: 10, alignItems: 'center' }}>
                 <Text style={styles.titleText}>{pseudoText}</Text>
@@ -35,7 +36,7 @@ export default function PlayFirstView() {
                 />
             </View>
             <View style={{ flex: 2 }}>
-                <NextViewButton navigation={launchGameNavigation} screenName='LaunchGame' />
+                <NextViewButton navigation={launchGameNavigation} screenName='LaunchGame' playerName={pseudo} playerPicture={image} />
             </View>
         </View>
     )
