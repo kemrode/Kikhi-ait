@@ -1,5 +1,5 @@
 import React from "react";
-import { Pressable, View, Text } from "react-native";
+import { Pressable, View, Text, StyleSheet } from "react-native";
 
 export default function NextViewButton(props: { navigation: any; screenName: string; }) {
     // Properties
@@ -9,12 +9,33 @@ export default function NextViewButton(props: { navigation: any; screenName: str
 
     // Render
     return (
-        <Pressable onPress={() => {
+        <Pressable style={styles.mainView} onPress={() => {
             nextNavigation.navigate(nextScreenName)
         }}>
-            <View>
-                <Text>{nextTitle}</Text>
+            <View style={styles.textView}>
+                <Text style={styles.textFont}>{nextTitle}</Text>
             </View>
         </Pressable>
     )
 }
+
+const styles = StyleSheet.create({
+    mainView: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    textView: {
+        width: '80%',
+        height: '50%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 13,
+        backgroundColor: '#2023E6'
+    },
+    textFont: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 20
+    }
+})

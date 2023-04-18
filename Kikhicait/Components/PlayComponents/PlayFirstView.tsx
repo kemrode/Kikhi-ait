@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, TextInput } from "react-native";
 import NextViewButton from "../NextViewButton";
 import { useNavigation } from "@react-navigation/native";
 import { LaunchGameViewProps } from "../../Navigation/RootTypes";
+import GetFileFromLibrairy from "./GetFileFromLibrairy";
 
 export default function PlayFirstView() {
 
@@ -18,6 +19,9 @@ export default function PlayFirstView() {
         <View style={styles.mainView}>
             <View style={styles.titleView}>
                 <Text style={styles.titleText}>{titleMessageText}</Text>
+            </View>
+            <View style={{ flex: 1.5, alignItems: 'center', justifyContent: 'center' }}>
+                <GetFileFromLibrairy />
             </View>
             <View style={{ flex: 2, marginLeft: 10, alignItems: 'center' }}>
                 <Text style={styles.titleText}>{pseudoText}</Text>
@@ -43,13 +47,14 @@ const styles = StyleSheet.create({
         backgroundColor: "#1F0536"
     },
     titleView: {
-        flex: 3,
+        flex: 2,
         alignItems: 'center',
         justifyContent: 'center',
     },
     titleText: {
         color: 'white',
         fontSize: 25,
+        textAlign: 'center'
     },
     inputStyle: {
         width: '80%',

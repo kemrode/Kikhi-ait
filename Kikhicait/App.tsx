@@ -14,18 +14,15 @@ export default function App() {
   const [fontsLoaded] = useFonts({
     icomoon: require('./assets/icomoon/icomoon.ttf')
   });
+  if (!fontsLoaded) {
+    return null;
+  }
 
-  return fontsLoaded ? (
+  return (
     <NavigationContainer>
       <RootNavigator />
     </NavigationContainer>
-  ) : null;
-
-  // return (
-  //   <NavigationContainer>
-  //     <RootNavigator />
-  //   </NavigationContainer>
-  // )
+  )
 }
 
 

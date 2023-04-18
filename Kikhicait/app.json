@@ -25,6 +25,14 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [ 
+      [
+      "expo-image-picker", {
+        "photosPermission": "L'application Kikhicait a besoin d'accéder à vos photos pour remplir votre profil",
+        "cameraPermission": "L'application Kikhicait a besoin d'accéder à l'appareil photo afin de compléter votre profil, nardinamouk"
+      }
+    ]
+    ]
   }
 }
