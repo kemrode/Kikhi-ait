@@ -12,7 +12,7 @@ export class AnswerClass implements Answer {
     constructor(id: number, idQuestion: number, answerText: string) {
         this.id = id;
         this.idQuestion = idQuestion;
-        this.answerText = answerText
+        this.answerText = answerText;
     }
 
 }

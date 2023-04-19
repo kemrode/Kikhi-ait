@@ -2,7 +2,7 @@ import { Answer } from "../Models/Answer";
 
 export interface IAnswerRepository {
 
-    GetAllAnswer(): Answer[];
-    GetAnswerByQuestionId(questionId: string): Answer[]
+    GetAllAnswer(): Promise<Answer[]>;
+    GetAnswerByQuestionId(questionId: string): Promise<Answer[]>;
 
 }

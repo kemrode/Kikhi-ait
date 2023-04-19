@@ -1,30 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Image, Text, FlatList } from "react-native";
 import GameOptionsHeader from "./GameOptionsHeader";
 import AnswerView from "./AnswerView";
-import { QuestionClass } from "../../Lib/Models/Question";
-import { AnswerClass } from "../../Lib/Models/Answer";
+import { Answer, AnswerClass } from "../../Lib/Models/Answer";
+import { AnswerRepository } from "../../Lib/Repositories/AnswerRepository";
 
 export default function LaunchGame(props: { route: { params: any } }) {
     // Properties
     const playerPicture = props.route.params.playerPicture;
     const playerName = props.route.params.playerName;
     const questionText: string = "Ceci est l'intitulé de la question à poser";
+    const [answers, setAnswers] = useState<AnswerClass[]>();
 
-
-    const questionMockData = [
-        new QuestionClass(1, 'ma première question', 1),
-        new QuestionClass(2, 'ma seconde question', 2),
-        new QuestionClass(3, 'une troisième question', 3),
-        new QuestionClass(4, 'et une dernière pour la route', 4)
-    ]
-
-    const answerMockData = [
+    const answerMockData: AnswerClass[] = [
         new AnswerClass(1, 1, 'la bonne réponse'),
         new AnswerClass(2, 1, 'une mauvaise réponse'),
         new AnswerClass(3, 1, 'une mauvaise réponse'),
         new AnswerClass(4, 1, 'une mauvaise réponse'),
     ]
+    // const testGet = repository.GetAllAnswer();
+
+    useEffect(() => {
+        const repository: AnswerRepository = new AnswerRepository();
+        const responseAllAnswers = async () => {
+            return await repository.GetTestAll();
+        };
+        responseAllAnswers()
+            .then((response: AnswerClass[]) => { setAnswers(response) })
+            .catch((err: { message: any; }) => {
+                console.log(err.message)
+            })
+        //console.log(responseAllAnswers())
+    }, [])
+
+    console.log("au retour j'ai un answers valant : ", answers)
 
     // Render
     return (
